@@ -1,0 +1,36 @@
+.notes {
+  display: flex;
+  justify-content: space-between;
+  margin: 30px auto;
+
+  h2 {
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 127%;
+    color: #323232;
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    border-radius: 16px;
+    padding: 16px 20px 16px 16px;
+    width: 121px;
+    height: 56px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 4px 8px 3px rgba(0, 0, 0, 0.15);
+    background: #fffbfe, rgba(103, 80, 164, 0.11);
+
+    & svg {
+      margin-right: 12px;
+    }
+
+    & span {
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 143%;
+      letter-spacing: 0.01em;
+      text-align: center;
+      color: #6750a4;
+    }
+  }
+}
