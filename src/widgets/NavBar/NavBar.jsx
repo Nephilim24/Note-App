@@ -4,7 +4,7 @@ export const NavBar = ({ searchMode, setSearchMode }) => {
     return (
         <nav className="nav">
             {searchMode ?
-                <Button type={'back'} onClick={() => setSearchMode(prev => !prev)} />
+                <Button type={'back'} onClick={() => setSearchMode(false)} />
                 :
                 <div></div>
             }

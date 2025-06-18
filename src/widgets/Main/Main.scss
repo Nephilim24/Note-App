@@ -1,0 +1,117 @@
+main {
+  margin-top: 30px;
+}
+
+.notes {
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+
+    & h2 {
+      font-weight: 400;
+      font-size: 22px;
+      line-height: 127%;
+      color: #323232;
+    }
+
+    & button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 120px;
+      height: 56px;
+      border-radius: 16px;
+      background: #f3edf7;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 4px 8px 3px rgba(0, 0, 0, 0.15);
+      transition: all .5s;
+
+      &:hover {
+        box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.3), 0 4px 8px 6px rgba(0, 0, 0, 0.15);
+        transition: all .5s;
+      }
+
+      & span {
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 143%;
+        letter-spacing: 0.01em;
+        text-align: center;
+        color: #6750a4;
+      }
+    }
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 30px !important;
+    gap: 24px;
+
+    &-item {
+      box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.15), 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+      background: #f3edf7;
+      border-radius: 16px;
+      padding: 16px;
+
+      & h5 {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 150%;
+        letter-spacing: 0.01em;
+        color: #1c1b1f;
+      }
+
+      & .date {
+        display: inline-block;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 143%;
+        letter-spacing: 0.02em;
+        color: #cac4d0;
+        margin-bottom: 16px;
+      }
+
+      & p {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 143%;
+        letter-spacing: 0.02em;
+        color: #49454f;
+        margin-bottom: 17px;
+      }
+
+      .buttons {
+        display: flex;
+        justify-content: end;
+
+        & button {
+          display: flex;
+          align-items: center;
+
+          & span {
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 143%;
+            letter-spacing: 0.01em;
+            text-transform: uppercase;
+            text-align: center;
+            padding: 10px 12px;
+          }
+
+          .edit {
+            color: #6750a4;
+          }
+
+
+          .delete {
+            color: #cf1b1b;
+          }
+        }
+      }
+
+    }
+  }
+}
