@@ -2,11 +2,16 @@ import NotesContainer from "./NotesContainer";
 import "./Main.scss";
 import { useState } from "react";
 
-const Main = () => {
+const Main = ({notes}) => {
   const [gridMode, setGridMode] = useState(false);
   return (
-    <main>
-      <NotesContainer gridMode={gridMode} setGridMode={setGridMode}></NotesContainer>
+    <main notes={notes}>
+      <NotesContainer
+        gridMode={gridMode}
+        setGridMode={setGridMode}
+        notes={notes}
+
+      />
     </main>
   )
 }
