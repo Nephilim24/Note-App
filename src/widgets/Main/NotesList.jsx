@@ -5,9 +5,9 @@ const NotesList = ({ gridMode, notes }) => {
     <>
       <div className={`notes__list container ${gridMode ? '' : 'list'}`}>
         {
-          notes.map((note, index) => {
+          notes.map((note, index) => (
             <NotesListItem key={index} note={note} />
-          })
+          ))
         }
       </div>
     </>
