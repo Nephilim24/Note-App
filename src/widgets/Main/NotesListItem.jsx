@@ -1,19 +1,19 @@
 import editIcon from "../../assets/icons/edit.svg";
 import deleteIcon from "../../assets/icons/delete.svg"
 
-const NotesListItem = () => {
+const NotesListItem = ({ note, showEditModal, removeNote, index }) => {
   return (
     <>
       <div className="notes__list-item">
-        <h5>Title</h5>
-        <p className="date">07.03.2022</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+        <h5>{note.title}</h5>
+        <span className="date">{note.date}</span>
+        <p>{note.descr}</p>
         <div className="notes__list-item-options">
-          <button>
+          <button onClick={showEditModal}>
             <img src={editIcon} alt="" />
             <span className="edit">Редактировать</span>
           </button>
-          <button>
+          <button onClick={() => removeNote(index)}>
             <img src={deleteIcon} alt="" />
             <span className="delete">Удалить</span>
           </button>

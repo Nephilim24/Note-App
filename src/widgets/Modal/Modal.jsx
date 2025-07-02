@@ -1,22 +1,39 @@
 import './Modal.scss';
 
-const Modal = ({ showModal, setShowModal }) => {
+const Modal = ({
+  showModal,
+  addNote,
+  closeModal,
+  modalEditMode,
+  title, setTitle, descr, setDescr }) => {
   return (
     <>
-      <div className={`modal ${showModal ? 'active' : ''}`}>
-        <div className="modal__dialog">
-          <h2>Добавить заметку</h2>
+      <div className={`modal ${showModal ? 'active' : ''}`} onClick={closeModal}>
+        <div
+          className="modal__dialog"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <h2>{modalEditMode ? 'Изменить заметку' : 'Добавить заметку'}</h2>
           <label htmlFor="note">
             <span>Заголовок</span>
-            <input type="text" placeholder='Заголовок' />
+            <input id='title' type='text' placeholder='Заголовок'
+              value={title} onChange={(e) => setTitle(e.target.value)}
+            />
           </label>
           <label htmlFor="note">
             <span>Заметка</span>
-            <input type="text" placeholder='Заметка' />
+            <input id='note' type="text" placeholder='Заметка'
+              value={descr} onChange={(e) => setDescr(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key == 'Enter') {
+                  addNote();
+                };
+              }}
+            />
           </label>
           <div className="modal__dialog-options">
-            <button>Отмена</button>
-            <button>Добавить</button>
+            <button onClick={closeModal}>Отмена</button>
+            <button onClick={addNote}>Добавить</button>
           </div>
         </div>
       </div >
