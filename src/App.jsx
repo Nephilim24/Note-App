@@ -13,6 +13,16 @@ const App = () => {
   const [modalEditMode, setModalEditMode] = useState(false);
   const [title, setTitle] = useState('');
   const [descr, setDescr] = useState('');
+  const [pickedNoteId, setPickedNoteId] = useState('');
+  const [search, setSearch] = useState('');
+
+  useEffect(() => {
+    const localData = localStorage.getItem('notes');
+    if (localData) {
+      setNotes(JSON.parse(localData));
+    }
+  }, []);
+
 
   const addNote = () => {
     const note = {
@@ -20,15 +30,22 @@ const App = () => {
       title: title ? title : 'Нет заголовка',
       descr: descr ? descr : 'Нет заметки',
       date: new Date().toLocaleDateString(),
-    }
-    setNotes([...notes, note]);
+    };
+    const allNotes = [...notes, note]
+    localStorage.setItem('notes', JSON.stringify([...allNotes]));
+    setNotes([...allNotes]);
     closeModal();
   }
 
-  const showEditModal = () => {
+
+  const showEditModal = (id) => {
     setModalEditMode(true);
     setShowModal(true);
+
+    setPickedNoteId(id);
   }
+
+
   const closeModal = () => {
     setShowModal(false);
     setTimeout(() => {
@@ -36,15 +53,39 @@ const App = () => {
     }, 500);
   }
 
+
+  const editNote = () => {
+    if (pickedNoteId) {
+      const editedNoteIndex = notes.findIndex(note => note.id == pickedNoteId);
+      const note = {
+        id: uuidv4(),
+        title: title ? title : 'Нет заголовка',
+        descr: descr ? descr : 'Нет заметки',
+        date: new Date().toLocaleDateString(),
+      };
+      notes[editedNoteIndex] = note;
+      const allNotes = [...notes]
+      localStorage.setItem('notes', JSON.stringify([...allNotes]));
+      setNotes([...notes]);
+    }
+    closeModal();
+  }
+
+
   const removeNote = (index) => {
     notes.splice(index, 1);
+    const allNotes = [...notes]
+    localStorage.setItem('notes', JSON.stringify([...allNotes]));
     setNotes([...notes]);
   }
 
+
+  const filteredNotes = notes.filter(note => note.title.includes(search) || note.descr.includes(search));
+
   return (
     <>
-      <NavBar searchMode={searchMode} setSearchMode={setSearchMode} />
-      <Main notes={notes} showEditModal={showEditModal} removeNote={removeNote} />
+      <NavBar searchMode={searchMode} setSearchMode={setSearchMode} search={search} setSearch={setSearch} />
+      <Main notes={filteredNotes} showEditModal={showEditModal} removeNote={removeNote} />
       <AddNoteButton showModal={showModal} setShowModal={setShowModal} />
       <Modal
         showModal={showModal}
@@ -55,7 +96,8 @@ const App = () => {
         title={title}
         setTitle={setTitle}
         descr={descr}
-        setDescr={setDescr} />
+        setDescr={setDescr}
+        editNote={editNote} />
     </>
   );
 }

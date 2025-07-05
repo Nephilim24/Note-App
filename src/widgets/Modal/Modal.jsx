@@ -5,7 +5,8 @@ const Modal = ({
   addNote,
   closeModal,
   modalEditMode,
-  title, setTitle, descr, setDescr }) => {
+  title, setTitle, descr, setDescr,
+  editNote }) => {
   return (
     <>
       <div className={`modal ${showModal ? 'active' : ''}`} onClick={closeModal}>
@@ -33,7 +34,12 @@ const Modal = ({
           </label>
           <div className="modal__dialog-options">
             <button onClick={closeModal}>Отмена</button>
-            <button onClick={addNote}>Добавить</button>
+            {
+              modalEditMode ?
+                <button onClick={editNote}>Изменить</button>
+                :
+                <button onClick={addNote}>Добавить</button>
+            }
           </div>
         </div>
       </div >

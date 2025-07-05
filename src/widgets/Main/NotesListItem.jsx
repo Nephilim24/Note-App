@@ -9,7 +9,7 @@ const NotesListItem = ({ note, showEditModal, removeNote, index }) => {
         <span className="date">{note.date}</span>
         <p>{note.descr}</p>
         <div className="notes__list-item-options">
-          <button onClick={showEditModal}>
+          <button onClick={() => showEditModal(note.id)}>
             <img src={editIcon} alt="" />
             <span className="edit">Редактировать</span>
           </button>
